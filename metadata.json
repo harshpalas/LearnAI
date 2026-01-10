@@ -1,0 +1,5 @@
+{
+  "name": "Gemini LearnAI",
+  "description": "A full-stack style AI Learning Assistant powered by Google Gemini. Upload PDFs to generate interactive chats, summaries, flashcards, and quizzes.",
+  "requestFramePermissions": []
+}
