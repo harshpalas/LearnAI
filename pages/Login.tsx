@@ -40,7 +40,7 @@ export const Login: React.FC = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = 'https://learnai-47ab.onrender.com/auth/login/auth/google';
   };
 
   return (
