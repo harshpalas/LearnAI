@@ -22,7 +22,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.1.2",
     "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "@google/genai": "^0.14.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

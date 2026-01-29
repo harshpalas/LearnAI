@@ -70,7 +70,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             })}
           </nav>
 
-          <div className="p-4 border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-850">
+          {/* User Profile & Logout Section */}
+          <div className="p-4 border-t dark:border-gray-700">
              {/* Desktop Theme Toggle */}
              <button 
                onClick={toggleTheme}
