@@ -18,7 +18,7 @@ export const Login: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/auth/login', {
+      const response = await fetch('https://learnai-47ab.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
