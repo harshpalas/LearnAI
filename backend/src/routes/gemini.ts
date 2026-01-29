@@ -5,7 +5,8 @@ import { authMiddleware } from '../middleware/auth';
 const router = express.Router();
 
 // Configure the GoogleGenAI client
-const ai = new GoogleGenAI(process.env.GEMINI_API_KEY || "");
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+
 
 // Helper to chunk text if it's too long
 const truncateText = (text: string, maxLength: number = 100000) => {
