@@ -28,7 +28,7 @@ export const Signup: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/auth/signup', {
+      const response = await fetch('https://learnai-47ab.onrender.com/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
@@ -51,7 +51,7 @@ export const Signup: React.FC = () => {
   };
 
   const handleGoogleSignup = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = 'https://learnai-47ab.onrender.com/auth/google';
   };
 
   return (
