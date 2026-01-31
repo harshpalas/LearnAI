@@ -35,27 +35,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const fetchUserProfile = async () => {
-    try {
-      const data = await apiClient.get('/api/user/me');
-      if (data.user) {
-        setUser({
-          id: data.user._id,
-          name: data.user.name,
-          email: data.user.email
-        });
-      }
-    } catch (error) {
-      console.error('Failed to fetch user profile:', error);
-      removeAuthToken();
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const userData = await apiClient.get('/api/user/me');
 
-  const loginWithToken = async (token: string) => {
-    setAuthToken(token);
-    await fetchUserProfile();
-  };
+    setUser({
+      id: userData._id,
+      name: userData.name,
+      email: userData.email
+    });
+  } catch (error) {
+    console.error('Failed to fetch user profile:', error);
+    removeAuthToken();
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const login = (name: string, email: string) => {
     const newUser = { id: '1', name, email };
