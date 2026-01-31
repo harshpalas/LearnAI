@@ -34,16 +34,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
- const fetchUserProfile = async () => {
+  const fetchUserProfile = async () => {
     try {
-      // CHANGE 1: Update the endpoint to match 'auth.ts'
-      // Assuming your auth router is mounted at '/auth' or '/api/auth'
-      const data = await apiClient.get('/auth/status');
-
-      // CHANGE 2: The backend '/status' returns { authenticated: true, user: ... }
-      if (data.authenticated && data.user) {
+      const data = await apiClient.get('/api/user/me');
+      if (data.user) {
         setUser({
-          id: data.user._id, // 'req.user' from Mongoose usually has _id
+          id: data.user._id,
           name: data.user.name,
           email: data.user.email
         });
@@ -54,7 +50,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } finally {
       setLoading(false);
     }
-  };;
+  };
 
   const loginWithToken = async (token: string) => {
     setAuthToken(token);
