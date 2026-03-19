@@ -1,0 +1,90 @@
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+export const getAuthToken = () => {
+  return localStorage.getItem('learnai_token');
+};
+
+export const setAuthToken = (token: string) => {
+  localStorage.setItem('learnai_token', token);
+};
+
+export const removeAuthToken = () => {
+  localStorage.removeItem('learnai_token');
+};
+
+const parseResponse = async (response: Response) => {
+  const data = await response.json();
+
+  if (!response.ok) {
+    const message = data?.error || `Request failed with status ${response.status}`;
+    throw new Error(message);
+  }
+
+  return data;
+};
+
+export const apiClient = {
+  get: async (endpoint: string) => {
+    const token = getAuthToken();
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      headers: {
+        'Authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json'
+      }
+    });
+    return parseResponse(response);
+  },
+
+  post: async (endpoint: string, data: any) => {
+    const token = getAuthToken();
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return parseResponse(response);
+  },
+
+  put: async (endpoint: string, data: any) => {
+    const token = getAuthToken();
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return parseResponse(response);
+  },
+
+  patch: async (endpoint: string, data: any) => {
+    const token = getAuthToken();
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return parseResponse(response);
+  },
+
+  delete: async (endpoint: string) => {
+    const token = getAuthToken();
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': token ? `Bearer ${token}` : '',
+        'Content-Type': 'application/json'
+      }
+    });
+    return parseResponse(response);
+  }
+};
+
+export default API_URL;
